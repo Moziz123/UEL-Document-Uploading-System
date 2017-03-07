@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2 class="page-header">Login.</h2>
+
+{% if messages is defined %}
+    {% for msg in messages %}
+        <div class="warning">{{ msg }}</div>
+    {% endfor %}
+{% endif %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}
+

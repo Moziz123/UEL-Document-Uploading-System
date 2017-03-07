@@ -1,0 +1,24 @@
+job desc
+
+/**
+     * 
+     * @OneToOne(targetEntity="Placement")
+     * @JoinColumn(name="placement_id", referencedColumnName="id")
+     */
+    private $placement_id;
+
+
+
+
+placement
+/**
+     *
+     * @OneToOne(targetEntity="Student")
+     * @JoinColumn(name="student_username", referencedColumnName="username")
+     */
+    private $student_username;
+
+
+
+
+

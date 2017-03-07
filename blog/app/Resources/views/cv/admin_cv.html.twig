@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2 class="page-header">View CV</h2>
+
+
+
+<table class="table table-striped">
+ <thead>
+<tr>
+
+<th> CV</th>
+<th> Date Uploaded</th>
+<th> Last modified</th>
+<th> Status</th>
+
+</tr>
+</thead>
+
+<tbody>
+<tr>
+{% if cv %}
+<td> <a href="{{ asset('documents/cvs/' ~ cv.location) }}">View CV</a></td>
+<td> {{ cv.dateUploaded|date("d/m/Y") }}</td>
+<td> {{ cv.lastModified|date("d/m/Y") }}</td>
+<td> {{ cv.status }}</td>
+
+</td>
+</tr>
+<br>
+<p>Student ID: {{ "u#{cv.student.username}" }}</p>
+</tbody>
+</table>
+{% endif  %}
+<br>
+{% if notes is defined %}
+ {% for note in notes %}   
+        <div class="card text-center">
+  <div class="card-header">
+    Posted by: {{ note['name'] }}
+  </div>
+  <div class="card-block">
+    
+    <p class="card-text">{{ note['notes'] }}</p>
+    
+  </div>
+  <div class="card-footer text-muted">
+    Posted on: {{ note['time']|date("d/m/Y") }}
+  </div>
+</div>
+<br>
+{% endfor %}     
+{% endif %}
+
+<br>
+
+{{ form_label(form.notes, 'Leave a comment:') }}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+{% endblock %}

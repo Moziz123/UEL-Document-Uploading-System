@@ -1,0 +1,56 @@
+<?php
+
+namespace AppBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Customer;
+/**
+ * Cart
+ *
+ * @ORM\Table(name="cart")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CartRepository")
+ */
+class Cart
+{
+   /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * 
+     */
+    private $id;
+
+     /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    private $customer;
+
+    // ...
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Cart
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

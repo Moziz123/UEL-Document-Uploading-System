@@ -1,0 +1,70 @@
+Moses Carayol
+169 Plashet Road,
+London, 
+E13 0QZ.
+Mob:       07961528485
+Email:  moses_carayol1@hotmail.com  
+
+PERSONAL STATEMENT:  
+A third year undergraduate student in BSc Computing for Business seeking to expand his knowledge and skills in developing real world applications.  Proficient skills in Web Development, Web Design, Systems Analysis & Design and Database Systems.  
+Work experience in this field include a summer internship with UEL to develop a well being app for the Psychology department using Agile methods with HTML5, CSS, Laravel (PHP framework),  JavaScript, JQuery Mobile and PhoneGap.   An enthusiastic team player with great communication skills whose passion and love for Computer Science is beyond compare.
+
+EDUCATION:
+22/09/2014 – Present                                      University of East London   
+Bsc (Hons) Computing for Business - expected result (1st class)
+Year1 modules with results:
+Introduction to Web Technologies                   84%	Introduction to Software Development                   93%	Introduction to Computer Systems & Networks       91%
+Discrete Maths for Computer Science                            86%	Information Systems Modelling and Design      77%   	
+Year 2 modules with results:
+Web Applications Development –           94%	Database Systems- 
+84%	Systems Administration                    82%
+Computing in Practice – 85%	Information Systems Management & Strategy – 65%	
+09/2002 - 06/2003                                          University of Westminster    
+Foundation course in Maths & Computing.
+GRADE:     Merits and distinctions in all 8 modules
+
+09/2000 - 06/2001                                          Glenmuir High School, Clarendon, Jamaica
+GCE 'A' Level& ‘AS’ level.
+GRADE:     Pass in Maths, Physics and Technical Drawing.  Grade A in Additional Mathematics at AS level.
+09/1994 - 06/1999                                  Marina International School, Fajara, The Gambia     IGCSE 'O' Level
+GRADE:     Merit     AAABCCC in Maths, Physics, Sociology, Economics, Art, English and Computer Studies respectively.
+
+WORK EXPERIENCE:
+09/2014 – Present             on Github - https://github.com/uel-webapps/group1  Username: Moziz123
+06/2016-09/2016:                                   Junior web developer
+University of East London
+•	Front end and backend development of a well being app for the university.
+•	Languages – Javascript, HTML5, CSS3, PHP, MySQL
+•	Frameworks used – Laravel, JQueryMobile and JQuery.
+09/2012 - 09/2013:                                 Membership Sales Consultant
+Virgin Active Hammersmith
+•	Generating leads, in reach and outreach.  
+•	Sales calls, follow up calls, referral calls, meet and greet, thorough needs analysis
+•	Touring, price presenting and closing
+Achievement:  Hit route 66+ sales 11 out of 12 months.  .  Once a membership consultant reached 66 sales for the month, you earned 26 pounds per sale on a 12 month contract and 13 pounds per sale on a monthly member ship.  Which meant your commission exceeded your salary.
+05/2010 – 09/2012:                                 Membership Sales Advisor
+LA Fitness West India Quay
+•	Generating leads, in reach and outreach. 
+•	Sales calls, follow up calls, referral calls, meet and greet, thorough needs analysis
+•	Touring, price presenting and closing
+Achievement:  In September, the hardest month, I smashed my target of 75 sales by achieving 88 sales and generating 3,500 pounds for the business at the 3rd biggest LA fitness.
+
+IT SKILLS:
+HTML5        MySQL            Laravel        PHP                  Waterfall & Agile methods                  
+CSS               Framework7        Linux          JavaScript         Bootstrap     XML & JSON                                                
+
+INTEREST
+Basketball, Travelling, Pitching ideas, Learning about different cultures, Watching live comedies.
+
+REFERENCES:
+Mr Andreas Baravalle                                                               Alex Green
+Senior Lecturer                                                                          Club Manager
+University of East London                                                       Fitness First Spitalfields Tower
+London,   E16 2RD                                                                    7 Frying Pan Alley, E 
+Tel: 0208 223 2071                                                                  Tel: 0203 372 9389
+Email:a.baravalle@uel.ac.uk                                                 Email: spitalfieldstowermanager@fitnessfirst.co.uk
+
+
+
+	
+

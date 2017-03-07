@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2 class="page-header">View Job Description</h2>
+
+
+
+<table class="table table-striped">
+ <thead>
+<tr>
+
+<th> Job Description</th>
+<th> Date Uploaded</th>
+<th> Last modified</th>
+<th> Status</th>
+
+</tr>
+</thead>
+
+<tbody>
+<tr>
+{% if jobDesc %}
+<td> <a href="{{ asset('documents/job_descriptions/' ~ jobDesc.location) }}">View job description</a></td>
+<td> {{ jobDesc.dateUploaded|date("d/m/Y") }}</td>
+<td> {{ jobDesc.lastModified|date("d/m/Y") }}</td>
+<td> {{ jobDesc.status }}</td>
+
+</tr>
+<br>
+<p>Student ID: {{ jobDesc.placement.student.username }}</p>
+{% endif %}
+</tbody>
+</table>
+
+<br>
+{% if notes is defined %}
+ {% for note in notes %}   
+        <div class="card text-center">
+  <div class="card-header">
+    Posted by: {{ note['name'] }}
+  </div>
+  <div class="card-block">
+    
+    <p class="card-text">{{ note['notes'] }}</p>
+    
+  </div>
+  <div class="card-footer text-muted">
+    Posted on: {{ note['time']|date("d/m/Y") }}
+  </div>
+</div>
+<br>
+{% endfor %}     
+{% endif %}
+
+<br>
+
+{{ form_label(form.notes, 'Leave a comment:') }}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}
