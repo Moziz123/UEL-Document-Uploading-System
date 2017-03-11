@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+
 <h2 class="page-header">View Job Description</h2>
 
 
@@ -9,7 +10,12 @@
 {{ form_end(jobDescForm) }}
 <br>
 {% if msg is defined %}
-<p> {{ msg }}</p>
+<div class="row">
+<div class="col-md-6"><p> {{ msg }}</p></div>
+{% if msg == 'You need to confirm a placement before uploading a Job description document.' %}
+<div class="col-md-offset-6"><a  href="{{ path('placement_confirmation') }}">confirm a placement</a></div>
+{% endif %}
+</div>
 {% endif %}
 
 <table class="table table-striped">
@@ -33,9 +39,14 @@
 <td> {{ jobDesc.status }}</td>
 
 </tr>
-<br>
-<p>Student ID: {{ username }}</p>
 {% endif %}
+<br>
+<div class="row">
+  <div class="col-md-4"><p>Student ID: {{ username }}</p></div>
+  <div class="col-md-4 col-md-offset-4"><a class="btn btn-primary" href="{{ path('student_home') }}" role="button">back to homepage</a></div>
+</div>
+<br>
+
 </tbody>
 </table>
 

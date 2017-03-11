@@ -33,9 +33,15 @@
 <td> {{ cv.status }}</td>
 
 </tr>
-<br>
-<p>Student ID: {{ "u#{cv.student.username}" }}</p>
 {% endif %}
+<br>
+<div class="row">
+  <div class="col-md-4"><p>Student ID: {{ "u#{student.username}" }}</p></div>
+  <div class="col-md-4 col-md-offset-4"><a class="btn btn-primary" href="{{ path('student_home') }}" role="button">back to homepage</a></div>
+</div>
+
+
+<br>
 </tbody>
 </table>
 

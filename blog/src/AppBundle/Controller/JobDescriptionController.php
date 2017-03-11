@@ -53,11 +53,11 @@ class JobDescriptionController extends Controller
     $latestJobDesc = '';
     $latestTime = '';
     $prevComs = '';
-
+    if ($placement){
     $latestJobDesc = $this->getDoctrine()
                ->getRepository('AppBundle:JobDescription')
                ->findOneBy(array('placement' => $placement->getId()));
-
+    }
     if($latestJobDesc){
          $prevComs = $latestJobDesc->getNotes();
          if($prevComs){
@@ -150,7 +150,7 @@ class JobDescriptionController extends Controller
                    'jobDesc' => $latestJobDesc, 'notes' => $note, 'msg' => $_SESSION['msg'], 'username' => $user));  
               }
          }else{
-               $_SESSION['msg'] = 'You need to fill out a placement form before uploading a Job description document.';               
+               $_SESSION['msg'] = 'You need to confirm a placement before uploading a Job description document.';               
                return $this->render('job_desc/student_job_desc.html.twig', 
                array('form' => $form->createView(), 'jobDescForm' => $jobDescForm->createView(),
                'jobDesc' => $latestJobDesc, 'notes' => $note, 'msg' => $_SESSION['msg'], 'username' => $user)); 
@@ -168,7 +168,8 @@ class JobDescriptionController extends Controller
     //Handle comments on CV
     $form->handleRequest($request);
     if($form->isSubmitted() && $form->isValid()){          
-           $notes = $form['notes']->getData();
+           $not = $form['notes']->getData();
+           $notes = filter_var($not, FILTER_SANITIZE_STRING);
            $time = date("Y-m-d H:i:s");   
            $name = $student->getFirstname() . ' ' . $student->getLastname();
            $data = array('name' => $name, 'time' => $time, 'notes' => $notes);
@@ -251,7 +252,8 @@ class JobDescriptionController extends Controller
      //Handle comments on CV
     $form->handleRequest($request);
     if($form->isSubmitted() && $form->isValid()){          
-           $notes = $form['notes']->getData();
+           $not = $form['notes']->getData();
+           $notes = filter_var($not, FILTER_SANITIZE_STRING);
            $time = date("Y-m-d H:i:s");   
            $name = $lineManager->getFirstname() . ' ' . $lineManager->getLastname();
            $data = array('name' => $name, 'time' => $time, 'notes' => $notes);

@@ -44,6 +44,13 @@ class Placement
     private $endDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUploaded", type="datetime")
+     */
+    private $dateUploaded;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="hoursPerWeek", type="string", length=30, nullable=true)
@@ -287,5 +294,29 @@ class Placement
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set dateUploaded
+     *
+     * @param \DateTime $dateUploaded
+     *
+     * @return Placement
+     */
+    public function setDateUploaded($dateUploaded)
+    {
+        $this->dateUploaded = $dateUploaded;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUploaded
+     *
+     * @return \DateTime
+     */
+    public function getDateUploaded()
+    {
+        return $this->dateUploaded;
     }
 }

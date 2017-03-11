@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     
     /**
-     * @Route("/login", name="user_login")
+     * @Route("/", name="user_login")
      */
     public function loginAction(Request $request)
     {
@@ -57,10 +57,10 @@ class LoginController extends Controller
                       $_SESSION['username'] = $username;
                       if($student){
                             
-                            return $this->redirectToRoute('job_desc');   
+                            return $this->redirectToRoute('student_home');   
                       }elseif($lineManager){
                             
-                            return $this->redirectToRoute('admin_job_desc');
+                            return $this->redirectToRoute('admin_cv');
                       }
                 
              }
@@ -76,5 +76,60 @@ class LoginController extends Controller
         'form' => $form->createView()));  
 
    }
+
+   /**
+     * @Route("/home", name="student_home")
+     */
+    public function homeAction(Request $request)
+    {
+        session_start();
+        $_SESSION['msg'] = '';
+        $user = $_SESSION['username']; 
+        $username = substr($user, 1);    
+        $student = $this->getDoctrine()
+               ->getRepository('AppBundle:Student')
+               ->find($username);
+        $cvs = $student->getCvs();
+        $placement = $student->getPlacement();
+        $latestCV = '';
+        $mockInterview = '';
+        $employeePlacementAggreement = '';
+        $employeeRiskAssessment = '';
+        $employeeLiabilityInsurance = '';
+        $studentPlacementAggreement = '';
+        $studentConfidentialityAggreement = '';
+        $moduleLeaderVisit = '';
+        $jobDescription = '';
+        $latestTime = '';
+        if($cvs){    
+           foreach($cvs as $cv){            
+              $dateTime = $cv->getLastModified()->format('Y-m-d H:i:s');
+              $timestamp = strtotime($dateTime);            
+              if ($timestamp > $latestTime){
+                 $latestTime = $timestamp;
+                 $latestCV = $cv;
+              }                        
+           }        
+        }
+        if ($placement){
+            $jobDescription = $this->getDoctrine()
+               ->getRepository('AppBundle:JobDescription')
+               ->findOneBy(array('placement' => $placement->getId()));
+        }  
+
+        return $this->render('login/home.html.twig', array('cv' => $latestCV,
+                                                           'mi' => $mockInterview,
+                                                           'epa' => $employeePlacementAggreement,
+                                                           'era' => $employeeRiskAssessment,
+                                                           'eli' => $employeeLiabilityInsurance,
+                                                           'spa' => $studentPlacementAggreement,
+                                                           'sca' => $studentConfidentialityAggreement,
+                                                           'mlv' => $moduleLeaderVisit,
+                                                           'student' => $student, 
+                                                           'pc' => $placement,
+                                                           'jd' => $jobDescription,
+                                                           'msg' => $_SESSION['msg']));   
+
+    }
     
 }

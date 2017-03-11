@@ -44,6 +44,13 @@ class Placement
     private $endDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUploaded", type="datetime")
+     */
+    private $dateUploaded;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="hoursPerWeek", type="string", length=30, nullable=true)

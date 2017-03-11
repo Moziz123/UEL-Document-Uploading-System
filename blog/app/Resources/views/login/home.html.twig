@@ -1,0 +1,215 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2 class="page-header">My Internship</h2>
+
+<div class="row">
+  <div class="col-md-4"><p class="success">Welcome {{ student.firstName|capitalize }}.</p></div>
+{% if pc %}
+  <div class="col-md-4">Company: {{ pc.company.name }}</div>
+  <div class="col-md-4">Start date: {{ pc.startDate|date("d/m/Y") }}</div>
+</div>
+{% endif %}
+<br>
+<br>
+<p>Please complete each stage in the given order.</p>
+
+
+<table class="table table-bordered">
+ <thead>
+<tr>
+
+<th> Stage</th>
+<th> Completed</th>
+<th> Date</th>
+<th> Status</th>
+
+</tr>
+</thead>
+
+<tbody>
+<tr {% if (cv.status is defined) and (cv.status == 'accepted') %} class="success" {% endif %} >
+
+<td><a href="{{ path('view_cv') }}">Upload CV</a></td>
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (cv.status is defined) and (cv.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if cv %}
+<td> {{ cv.lastModified|date("d/m/Y") }}</td>
+<td> {{ cv.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (mi.status is defined) and (mi.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (cv.status is defined) and (cv.status == 'accepted') %}<a href="{{ path('mock_interview') }}">Mock Interview</a>
+{% else %}
+Mock Interview
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (mi.status is defined) and (mi.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if mi %}
+<td> {{ mi.date|date("d/m/Y") }}</td>
+<td> {{ mi.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (pc.status is defined) and (pc.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (mi.status is defined) and (mi.status == 'accepted') %}<a href="{{ path('placement_confirmation') }}">Placement Confirmation</a>
+{% else %}
+Placement Confirmation
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (pc.status is defined) and (pc.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if pc %}
+<td> {{ pc.dateUploaded|date("d/m/Y") }}</td>
+<td> {{ pc.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (jd.status is defined) and (jd.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (pc.status is defined) and (pc.status == 'accepted') %}<a href="{{ path('job_desc') }}">Job Description</a>
+{% else %}
+Job Description
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (jd.status is defined) and (jd.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if jd %}
+<td> {{ jd.lastModified|date("d/m/Y") }}</td>
+<td> {{ jd.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (epa.status is defined) and (epa.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (jd.status is defined) and (jd.status == 'accepted') %}<a href="{{ path('emp_placement_aggreement') }}">Employee Placement Aggreement</a>
+{% else %}
+Employee Placement Aggreement
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (epa.status is defined) and (epa.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if epa %}
+<td> {{ epa.lastModified|date("d/m/Y") }}</td>
+<td> {{ emp.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (era.status is defined) and (era.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (epa.status is defined) and (epa.status == 'accepted') %}<a href="{{ path('#') }}">Employer Risk Assessment</a>
+{% else %}
+Employer Risk Assessment
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (era.status is defined) and (era.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if era %}
+<td> {{ era.lastModified|date("d/m/Y") }}</td>
+<td> {{ era.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (eli.status is defined) and (eli.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (era.status is defined) and (era.status == 'accepted') %}<a href="{{ path('#') }}">Employer Liability Insurance</a>
+{% else %}
+Employer Liability Insurance
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (eli.status is defined) and (eli.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if eli %}
+<td> {{ eli.lastModified|date("d/m/Y") }}</td>
+<td> {{ eli.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (spa.status is defined) and (spa.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (eli.status is defined) and (eli.status == 'accepted') %}<a href="{{ path('#') }}">Student Placement Aggreement</a>
+{% else %}
+Student Placement Aggreement
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (spa.status is defined) and (spa.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if spa %}
+<td> {{ spa.lastModified|date("d/m/Y") }}</td>
+<td> {{ spa.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (sca.status is defined) and (sca.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (spa.status is defined) and (spa.status == 'accepted') %}<a href="{{ path('#') }}">Student Confidentiality Aggreement</a>
+{% else %}
+Student Confidentiality Aggreement
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (sca.status is defined) and (sca.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if sca %}
+<td> {{ sca.lastModified|date("d/m/Y") }}</td>
+<td> {{ sca.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+<tr {% if (mlv.status is defined) and (mlv.status == 'accepted') %} class="success" {% endif %}> 
+<td>{% if (sca.status is defined) and (sca.status == 'accepted') %}<a href="{{ path('#') }}">School Visit From Module Leader</a>
+{% else %}
+School Visit From Module Leader
+</td>
+{% endif %}
+<td> <div class="myCheckbox">  
+    <input type="checkbox" disabled{% if (mlv.status is defined) and (mlv.status == 'accepted') %} checked {% endif %}>
+</div></td>
+{% if mlv %}
+<td> {{ mlv.lastModified|date("d/m/Y") }}</td>
+<td> {{ mlv.status }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif  %}
+</tr>
+
+
+
+
+</tbody>
+</table>
+
+
+
+{% endblock %}
