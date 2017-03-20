@@ -109,7 +109,7 @@ class Student
     
     /**
      * One Student has One Placement.
-     * @ORM\OneToOne(targetEntity="Placement", mappedBy="student")
+     * @ORM\OneToOne(targetEntity="Placement", mappedBy="student", cascade={"persist"})
      */
     private $placement;
     

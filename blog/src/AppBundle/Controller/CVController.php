@@ -186,14 +186,13 @@ class CVController extends Controller
      $cv = new Cv();
      $form = $this->createFormBuilder($cv)
             ->add('status', ChoiceType::class, array('choices'  => array(
-            '' => null,
             'Uploaded' => 'uploaded',
             'Accepted' => 'accepted',
             'Rejected' => 'rejected')))
             ->add('notes', TextareaType::class, array('attr' => array(
             'class' => 'col-sm-12', 'style' => 'margin-top:30px', 'rows' => 5)))
             ->add('submit', SubmitType::class, array('attr' => array(
-            'label' => 'Submit', 'class' => 'btn btn-primary btn-lg active', 
+            'label' => 'Submit', 'formnovalidate' => 'formnovalidate', 'class' => 'btn btn-primary btn-lg active', 
                  'style' => 'margin-top:10px')))            
             ->getForm();
  
@@ -231,7 +230,7 @@ class CVController extends Controller
 
       $form->handleRequest($request); 
      
-      if($form->isSubmitted() && $form->isValid()){
+      if($form->isSubmitted()){
            $not = $form['notes']->getData();
            $notes = filter_var($not, FILTER_SANITIZE_STRING);
            $time = date("Y-m-d H:i:s");   
@@ -249,7 +248,7 @@ class CVController extends Controller
            
            return $this->render('cv/admin_cv.html.twig', array('form' => $form->createView(),
                         'cv' => $latestCV, 'notes' => $note));           
-       } elseif($form['status']->getData() !== null){
+       } elseif(($form['status']->getData() !== null) && ($form['notes']->getData() == null)){
            $status = $form['status']->getData();
            $latestCV->setStatus($status); 
            $em->flush();  

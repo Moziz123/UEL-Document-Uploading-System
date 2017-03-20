@@ -286,4 +286,38 @@ class LineManager
     {
         return $this->company;
     }
+
+    /**
+     * Add placement
+     *
+     * @param \AppBundle\Entity\Placement $placement
+     *
+     * @return LineManager
+     */
+    public function addPlacement(\AppBundle\Entity\Placement $placement)
+    {
+        $this->placements[] = $placement;
+
+        return $this;
+    }
+
+    /**
+     * Remove placement
+     *
+     * @param \AppBundle\Entity\Placement $placement
+     */
+    public function removePlacement(\AppBundle\Entity\Placement $placement)
+    {
+        $this->placements->removeElement($placement);
+    }
+
+    /**
+     * Get placements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlacements()
+    {
+        return $this->placements;
+    }
 }

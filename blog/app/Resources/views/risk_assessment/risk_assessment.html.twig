@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-<h2 class="page-header">View Employer Placement Aggreement</h2>
+<h2 class="page-header">View Employer Risk Assessment</h2>
 
 
-<h1>Upload Employer Placement Aggreement</h1>
-{{ form_start(empPlacAggForm) }}
-{{ form_row(empPlacAggForm.location) }}
-{{ form_end(empPlacAggForm) }}
+<h1>Upload Employer Risk Assessment</h1>
+{{ form_start(empRiskAssForm) }}
+{{ form_row(empRiskAssForm.location) }}
+{{ form_end(empRiskAssForm) }}
 <br>
 {% if msg is defined %}
 <div class="row">
 <div class="col-md-6"><p> {{ msg }}</p></div>
-{% if msg == 'You need to upload a job description before uploading an Employer placement aggreement document.' %}
-<div class="col-md-offset-6"><a  href="{{ path('job_desc') }}">upload job description</a></div>
+{% if msg == 'You need to upload an Employer Placement Aggreement document before uploading an Employer risk assessment document.' %}
+<div class="col-md-offset-6"><a  href="{{ path('emp_placement_aggreement') }}">upload employer placement aggreement</a></div>
 {% endif %}
 </div>
 {% endif %}
@@ -22,7 +22,7 @@
  <thead>
 <tr>
 
-<th> Employer Placement Aggreement</th>
+<th> Employer Risk Assessment</th>
 <th> Date Uploaded</th>
 <th> Last modified</th>
 <th> Status</th>
@@ -32,11 +32,11 @@
 
 <tbody>
 <tr>
-{% if empPlacAgg %}
-<td> <a href="{{ asset('documents/emp_plac_aggreements/' ~ empPlacAgg.location) }}">View Employer placement aggreement</a></td>
-<td> {{ empPlacAgg.dateUploaded|date("d/m/Y") }}</td>
-<td> {{ empPlacAgg.lastModified|date("d/m/Y") }}</td>
-<td> {{ empPlacAgg.status }}</td>
+{% if empRiskAss %}
+<td> <a href="{{ asset('documents/emp_risk_assessments/' ~ empRiskAss.location) }}">View Employer risk assessment</a></td>
+<td> {{ empRiskAss.dateUploaded|date("d/m/Y") }}</td>
+<td> {{ empRiskAss.lastModified|date("d/m/Y") }}</td>
+<td> {{ empRiskAss.status }}</td>
 
 </tr>
 {% endif %}

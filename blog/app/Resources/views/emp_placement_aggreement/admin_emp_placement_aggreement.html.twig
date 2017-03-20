@@ -4,19 +4,6 @@
 <h2 class="page-header">View Employer Placement Aggreement</h2>
 
 
-<h1>Upload Employer Placement Aggreement</h1>
-{{ form_start(empPlacAggForm) }}
-{{ form_row(empPlacAggForm.location) }}
-{{ form_end(empPlacAggForm) }}
-<br>
-{% if msg is defined %}
-<div class="row">
-<div class="col-md-6"><p> {{ msg }}</p></div>
-{% if msg == 'You need to upload a job description before uploading an Employer placement aggreement document.' %}
-<div class="col-md-offset-6"><a  href="{{ path('job_desc') }}">upload job description</a></div>
-{% endif %}
-</div>
-{% endif %}
 
 <table class="table table-striped">
  <thead>
@@ -39,13 +26,10 @@
 <td> {{ empPlacAgg.status }}</td>
 
 </tr>
+
+<br>
+<p>Student ID: {{ empPlacAgg.placement.student.username }}</p>
 {% endif %}
-<br>
-<div class="row">
-  <div class="col-md-4"><p>Student ID: {{ username }}</p></div>
-  <div class="col-md-4 col-md-offset-4"><a class="btn btn-primary" href="{{ path('student_home') }}" role="button">back to homepage</a></div>
-</div>
-<br>
 
 </tbody>
 </table>

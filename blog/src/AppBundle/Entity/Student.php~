@@ -109,7 +109,7 @@ class Student
     
     /**
      * One Student has One Placement.
-     * @ORM\OneToOne(targetEntity="Placement", mappedBy="student")
+     * @ORM\OneToOne(targetEntity="Placement", mappedBy="student", cascade={"persist", "remove"})
      */
     private $placement;
     
@@ -441,5 +441,29 @@ class Student
     public function getCvs()
     {
         return $this->cvs;
+    }
+
+    /**
+     * Set placement
+     *
+     * @param \AppBundle\Entity\Placement $placement
+     *
+     * @return Student
+     */
+    public function setPlacement(\AppBundle\Entity\Placement $placement = null)
+    {
+        $this->placement = $placement;
+
+        return $this;
+    }
+
+    /**
+     * Get placement
+     *
+     * @return \AppBundle\Entity\Placement
+     */
+    public function getPlacement()
+    {
+        return $this->placement;
     }
 }

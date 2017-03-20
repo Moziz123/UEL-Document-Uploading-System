@@ -9,7 +9,8 @@ parameters:
     locale: en
     cvs_directory: '%kernel.root_dir%/../web/documents/cvs'
     job_descriptions_directory: '%kernel.root_dir%/../web/documents/job_descriptions'
-
+    emp_plac_aggreements_directory: '%kernel.root_dir%/../web/documents/emp_plac_aggreements'
+    emp_risk_assessments_directory: '%kernel.root_dir%/../web/documents/emp_risk_assessments'
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }

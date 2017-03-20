@@ -3,15 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Placement;
-use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * JobDescription
+ * EmployerPlacementAggreement
  *
- * @ORM\Table(name="job_description")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\JobDescriptionRepository")
+ * @ORM\Table(name="employer_placement_aggreement")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployerPlacementAggreementRepository")
  */
-class JobDescription
+class EmployerPlacementAggreement
 {
     /**
      * @var int
@@ -31,8 +30,7 @@ class JobDescription
 
     /**
      * @var string
-     * @Assert\Length(
-     * min = 0)
+     *
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -54,21 +52,18 @@ class JobDescription
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=190)
+     * @ORM\Column(name="status", type="string", length=30, nullable=true)
      */
     private $status;
 
     /**
-     * One JobDescription is from One Placement.
+     * One EmployerPlacementAggreement is from One Placement.
      * @ORM\OneToOne(targetEntity="Placement")
      * @ORM\JoinColumn(name="placement_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $placement;
-    
 
-    
 
-   
     /**
      * Get id
      *
@@ -80,35 +75,11 @@ class JobDescription
     }
 
     /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return JobDescription
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
      * Set notes
      *
      * @param string $notes
      *
-     * @return JobDescription
+     * @return EmployerPlacementAggreement
      */
     public function setNotes($notes)
     {
@@ -132,7 +103,7 @@ class JobDescription
      *
      * @param \DateTime $dateUploaded
      *
-     * @return JobDescription
+     * @return EmployerPlacementAggreement
      */
     public function setDateUploaded($dateUploaded)
     {
@@ -156,7 +127,7 @@ class JobDescription
      *
      * @param \DateTime $lastModified
      *
-     * @return JobDescription
+     * @return EmployerPlacementAggreement
      */
     public function setLastModified($lastModified)
     {
@@ -180,7 +151,7 @@ class JobDescription
      *
      * @param string $status
      *
-     * @return JobDescription
+     * @return EmployerPlacementAggreement
      */
     public function setStatus($status)
     {
@@ -199,15 +170,12 @@ class JobDescription
         return $this->status;
     }
 
-    
-
- 
     /**
      * Set placement
      *
      * @param \AppBundle\Entity\Placement $placement
      *
-     * @return JobDescription
+     * @return EmployerPlacementAggreement
      */
     public function setPlacement(\AppBundle\Entity\Placement $placement = null)
     {
@@ -224,5 +192,29 @@ class JobDescription
     public function getPlacement()
     {
         return $this->placement;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return EmployerPlacementAggreement
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

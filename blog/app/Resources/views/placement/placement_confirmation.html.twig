@@ -1,1 +1,116 @@
-placement confirmation form goes here
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h2 class="page-header">View Placement</h2>
+<br>
+
+{% if placement and placement.status == 'rejected' %}
+<h3>Fill in placement form</h3>
+{{ form_start(placementForm) }}
+<div class="form-group row">  
+<div class="col-xs-6 col-md-4" >
+<div id="downALittle">
+{{ form_row(placementForm.jobTitle) }}
+{{ form_row(placementForm.hoursPerWeek) }}
+{{ form_row(placementForm.startDate) }}
+{{ form_row(placementForm.endDate) }}
+</div>
+</div>
+<div class="col-xs-6 col-md-4"> {{ form_row(placementForm.company) }}</div>
+<div class="col-xs-6 col-md-4"> {{ form_row(placementForm.lineManager) }}</div>
+</div>
+{{ form_end(placementForm) }}
+
+{% elseif not placement %}
+
+<h3>Fill in placement form</h3>
+{{ form_start(placementForm) }}
+<div class="form-group row">  
+<div class="col-xs-6 col-md-4" >
+<div id="downALittle">
+{{ form_row(placementForm.jobTitle) }}
+{{ form_row(placementForm.hoursPerWeek) }}
+{{ form_row(placementForm.startDate) }}
+{{ form_row(placementForm.endDate) }}
+</div>
+</div>
+<div class="col-xs-6 col-md-4"> {{ form_row(placementForm.company) }}</div>
+<div class="col-xs-6 col-md-4"> {{ form_row(placementForm.lineManager) }}</div>
+</div>
+{{ form_end(placementForm) }}
+{% endif %}
+
+<br>
+{% if msg is defined %}
+<div class="row">
+<div class="col-md-6"><p> {{ msg }}</p></div>
+{% if msg == 'You need to confirm a placement before uploading a Job description document.' %}
+<div class="col-md-offset-6"><a  href="{{ path('placement_confirmation') }}">confirm a placement</a></div>
+{% endif %}
+</div>
+{% endif %}
+
+{% if placement %}
+<table class="table table-striped">
+ <thead>
+<tr>
+
+<th> Company</th>
+<th> Job title</th>
+<th> Start date</th>
+<th> End date</th>
+<th> Hours per week</th>
+<th> Line manager</th>
+<th> Status</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+
+<td> {{ placement.company.name }}</td>
+<td> {{ placement.jobTitle }}</td>
+<td> {{ placement.startDate|date("d/m/Y") }}</td>
+<td> {{ placement.endDate|date("d/m/Y") }}</td>
+<td> {{ placement.hoursPerWeek }}</td>
+<td> {{ placement.linemanager.firstname ~ ' ' ~ placement.linemanager.lastname }}</td>
+<td> {{ placement.status }}</td>
+</tr>
+{% endif %}
+<br>
+<div class="row">
+  <div class="col-md-4"><p>Student ID: {{ "u#{student.username}" }}</p></div>
+  <div class="col-md-4 col-md-offset-4"><a class="btn btn-primary" href="{{ path('student_home') }}" role="button">back to homepage</a></div>
+</div>
+<br>
+
+</tbody>
+</table>
+
+<br>
+{% if notes is defined %}
+ {% for note in notes %}   
+        <div class="card text-center">
+  <div class="card-header">
+    Posted by: {{ note['name'] }}
+  </div>
+  <div class="card-block">
+    
+    <p class="card-text">{{ note['notes'] }}</p>
+    
+  </div>
+  <div class="card-footer text-muted">
+    Posted on: {{ note['time']|date("d/m/Y") }}
+  </div>
+</div>
+<br>
+{% endfor %}     
+{% endif %}
+
+<br>
+
+{{ form_label(form.notes, 'Leave a comment:') }}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}

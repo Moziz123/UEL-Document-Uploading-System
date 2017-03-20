@@ -60,7 +60,7 @@ class LoginController extends Controller
                             return $this->redirectToRoute('student_home');   
                       }elseif($lineManager){
                             
-                            return $this->redirectToRoute('admin_cv');
+                            return $this->redirectToRoute('admin_emp_placement_aggreement');
                       }
                 
              }
@@ -93,9 +93,9 @@ class LoginController extends Controller
         $placement = $student->getPlacement();
         $latestCV = '';
         $mockInterview = '';
-        $employeePlacementAggreement = '';
-        $employeeRiskAssessment = '';
-        $employeeLiabilityInsurance = '';
+        $employerPlacementAggreement = '';
+        $employerRiskAssessment = '';
+        $employerLiabilityInsurance = '';
         $studentPlacementAggreement = '';
         $studentConfidentialityAggreement = '';
         $moduleLeaderVisit = '';
@@ -115,13 +115,25 @@ class LoginController extends Controller
             $jobDescription = $this->getDoctrine()
                ->getRepository('AppBundle:JobDescription')
                ->findOneBy(array('placement' => $placement->getId()));
+
+            if($jobDescription){
+                $employerPlacementAggreement = $this->getDoctrine()
+               ->getRepository('AppBundle:EmployerPlacementAggreement')
+               ->findOneBy(array('placement' => $placement->getId()));
+                 if($employerPlacementAggreement){
+                      $employerRiskAssessment = $this->getDoctrine()
+                      ->getRepository('AppBundle:EmployerRiskAssessment')
+                      ->findOneBy(array('placement' => $placement->getId()));
+               
+                 }
+            }
         }  
 
         return $this->render('login/home.html.twig', array('cv' => $latestCV,
                                                            'mi' => $mockInterview,
-                                                           'epa' => $employeePlacementAggreement,
-                                                           'era' => $employeeRiskAssessment,
-                                                           'eli' => $employeeLiabilityInsurance,
+                                                           'epa' => $employerPlacementAggreement,
+                                                           'era' => $employerRiskAssessment,
+                                                           'eli' => $employerLiabilityInsurance,
                                                            'spa' => $studentPlacementAggreement,
                                                            'sca' => $studentConfidentialityAggreement,
                                                            'mlv' => $moduleLeaderVisit,

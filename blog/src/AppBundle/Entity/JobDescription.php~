@@ -31,7 +31,8 @@ class JobDescription
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     * min = 0)
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -60,7 +61,7 @@ class JobDescription
     /**
      * One JobDescription is from One Placement.
      * @ORM\OneToOne(targetEntity="Placement")
-     * @ORM\JoinColumn(name="placement_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="placement_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $placement;
     
@@ -200,4 +201,28 @@ class JobDescription
 
     
 
- }
+ 
+    /**
+     * Set placement
+     *
+     * @param \AppBundle\Entity\Placement $placement
+     *
+     * @return JobDescription
+     */
+    public function setPlacement(\AppBundle\Entity\Placement $placement = null)
+    {
+        $this->placement = $placement;
+
+        return $this;
+    }
+
+    /**
+     * Get placement
+     *
+     * @return \AppBundle\Entity\Placement
+     */
+    public function getPlacement()
+    {
+        return $this->placement;
+    }
+}

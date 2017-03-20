@@ -64,11 +64,19 @@ class Placement
      */
     private $status;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="notes", type="text", nullable=true)
+     */
+    private $notes;
+
+
 
     /**
      * One Placement is from One Student.
-     * @ORM\OneToOne(targetEntity="Student", inversedBy="placement")
-     * @ORM\JoinColumn(name="student_username", referencedColumnName="username")
+     * @ORM\OneToOne(targetEntity="Student", inversedBy="placement", cascade={"persist"})
+     * @ORM\JoinColumn(name="student_username", referencedColumnName="username" )
      */
     private $student;
 
@@ -84,7 +92,7 @@ class Placement
      * @ORM\ManyToOne(targetEntity="LineManager", inversedBy="placements")
      * @ORM\JoinColumn(name="linemanager_username", referencedColumnName="username")
      */
-    private $linemanager_username; 
+    private $linemanager; 
      
     
 
@@ -224,29 +232,7 @@ class Placement
         return $this->company;
     }
 
-    /**
-     * Set linemanagerUsername
-     *
-     * @param \AppBundle\Entity\LineManager $linemanagerUsername
-     *
-     * @return Placement
-     */
-    public function setLinemanagerUsername(\AppBundle\Entity\LineManager $linemanagerUsername = null)
-    {
-        $this->linemanager_username = $linemanagerUsername;
-
-        return $this;
-    }
-
-    /**
-     * Get linemanagerUsername
-     *
-     * @return \AppBundle\Entity\LineManager
-     */
-    public function getLinemanagerUsername()
-    {
-        return $this->linemanager_username;
-    }
+    
 
     /**
      * Set student
@@ -318,5 +304,53 @@ class Placement
     public function getDateUploaded()
     {
         return $this->dateUploaded;
+    }
+
+    /**
+     * Set linemanager
+     *
+     * @param \AppBundle\Entity\LineManager $linemanager
+     *
+     * @return Placement
+     */
+    public function setLinemanager(\AppBundle\Entity\LineManager $linemanager = null)
+    {
+        $this->linemanager = $linemanager;
+
+        return $this;
+    }
+
+    /**
+     * Get linemanager
+     *
+     * @return \AppBundle\Entity\LineManager
+     */
+    public function getLinemanager()
+    {
+        return $this->linemanager;
+    }
+
+    /**
+     * Set notes
+     *
+     * @param string $notes
+     *
+     * @return Placement
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Get notes
+     *
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }
